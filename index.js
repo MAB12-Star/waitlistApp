@@ -14,7 +14,7 @@ const ExpressError = require('./utils/ExpressError.js');
 const registerRoutes = require('./routes/register');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const dbUrl= process.env.SECRET;
-
+//fuckyou
 
 // 'mongodb://127.0.0.1:27017/waitlisttest'
 mongoose.connect(dbUrl)
