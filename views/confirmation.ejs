@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>Hummingbird</title>
+    <link rel="stylesheet" href="/confirmation.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;400&display=swap" rel="stylesheet">
+
+</head>
+ 
+<body>
+    <section id="hero">
+    <img src="/logo.png" alt="" id="logo">
+    <h1>Thank You!</h1>
+    <p>We've added your email address to the signup queue.</p>
+    <h2>There are <span id="count"><%=user.position%></span> people ahead of you</h2>
+    <p>This reservation is held for <span id="email"><%=user.email%></span></p>
+    </section>
+</body>
+ 
+</html>
