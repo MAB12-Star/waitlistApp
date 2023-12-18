@@ -25,7 +25,13 @@ mongoose.connect(dbUrl)
     console.log("Oh no mongo error!!!")
     console.log(err)
   });
-
+const store = MongoStore.create({
+  mongooseConnection: mongoose.connection, // Use mongoose connection
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret: secret
+  }
+});
 const secret = process.env.SECRET;
 const client = new MongoClient(dbUrl, {
   serverApi: {
