@@ -21,7 +21,7 @@ const dbUrl = process.env.Db_Url;
 
 
 // 'mongodb://127.0.0.1:27017/waitlisttest'
-mongoose.connect((mongodb+srv://mblue:pZS78bVNktFPtnAk@waitlistapp.oalqx74.mongodb.net/?retryWrites=true&w=majority))
+mongoose.connect(dbUrl)
   .then(() => {
     console.log('Mongo Connected');
   })
