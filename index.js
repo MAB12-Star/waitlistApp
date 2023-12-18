@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
   console.log('dotenv loaded');
 }
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -13,10 +14,8 @@ const MongoStore = require('connect-mongo');
 const ExpressError = require('./utils/ExpressError.js');
 const registerRoutes = require('./routes/register');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const dbUrl= process.env.DB_URL;
-//fuckyou
+const dbUrl = process.env.DB_URL;
 
-// 'mongodb://127.0.0.1:27017/waitlisttest'
 mongoose.connect(dbUrl)
   .then(() => {
     console.log('Mongo Connected');
@@ -25,6 +24,7 @@ mongoose.connect(dbUrl)
     console.log("Oh no mongo error!!!")
     console.log(err)
   });
+
 const secret = process.env.SECRET;
 const store = MongoStore.create({
   mongooseConnection: mongoose.connection, // Use mongoose connection
@@ -33,6 +33,7 @@ const store = MongoStore.create({
     secret: secret
   }
 });
+
 const client = new MongoClient(dbUrl, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -58,7 +59,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('Public'));
 
-// Session middleware configuration
 app.use(session({
   store: MongoStore.create({
     client,
@@ -81,7 +81,7 @@ app.get('/', (req, res) => {
 
 app.use('/', registerRoutes);
 
-app.all ('*',(req,res,next) => {
+app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404))
 });
 
@@ -101,4 +101,5 @@ const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });
+
 
