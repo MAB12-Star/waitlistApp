@@ -21,7 +21,7 @@ const catchAsync = require('../utils/CatchAsync.js');
         res.render("home", { error: "Email cannot be empty"});
         return;
       }
-      let foundUser = await User.findOne({ email: req.body.email});
+      let foundUser = await User.findOne({ email: req.body.email}).maxTimeMS(20000);
       if (foundUser) {
         res.render("home", {error: "That email is already on the waitlist"});
         return;
