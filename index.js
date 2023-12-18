@@ -27,13 +27,13 @@ mongoose.connect(dbUrl)
 
 const secret = process.env.SECRET;
 const store = MongoStore.create({
-  mongooseConnection: mongoose.connection, // Use mongoose connection
-  touchAfter: 24 * 60 * 60,
+  client: client,
+  dbName: 'waitlistApp',
+  touchAfter: 24 * 60 * 60,  // Adjust as needed
   crypto: {
     secret: secret
   }
 });
-
 const client = new MongoClient(dbUrl, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -58,6 +58,8 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('Public'));
+
+
 
 app.use(session({
   store: MongoStore.create({
