@@ -39,11 +39,11 @@ app.use(express.static('Public'));
 const secret = process.env.SECRET;
 
 const store = new MongoStore({
-  mongooseConnection: mongoose.connection, // Use existing mongoose connection
+  mongoUrl: dbUrl,
   touchAfter: 24 * 60 * 60,
   crypto: {
-    secret: secret,
-  },
+    secret: secret
+  }
 });
 //   const store = MongoStore.create({
 //     mongoUrl: dbUrl,
