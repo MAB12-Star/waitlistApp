@@ -36,15 +36,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('Public')); 
 
-const secret = process.env.SECRET;
+// const secret = process.env.SECRET;
 
-const store = new MongoStore({
-  mongoUrl: dbUrl,
-  touchAfter: 24 * 60 * 60,
-  crypto: {
-    secret: secret
-  }
-});
 //   const store = MongoStore.create({
 //     mongoUrl: dbUrl,
 //     touchAfter: 24 * 60 * 60,
@@ -54,25 +47,25 @@ const store = new MongoStore({
     
 // });
 
-store.on('error', function(e){
-  console.log('Session Store Error',e)
-})
+// store.on('error', function(e){
+//   console.log('Session Store Error',e)
+// })
 
-const sessionConfig = {
-  store:store,
-  name: 'session',
-  secret,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-      httpOnly: true,
-      // secure:true,
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-  },
-};
+// const sessionConfig = {
+//   store:store,
+//   name: 'session',
+//   secret,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//       httpOnly: true,
+//       // secure:true,
+//       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+//       maxAge: 1000 * 60 * 60 * 24 * 7,
+//   },
+// };
 
-app.use(session(sessionConfig));
+// app.use(session(sessionConfig));
 
 app.get('/', (req, res) => {
   res.render('home');
