@@ -39,11 +39,7 @@ app.use(express.static('Public'));
 const secret = process.env.SECRET;
 
 app.use(session({
-  secret: secret,
-  store: MongoStore.create({
-    clientPromise,
-    dbName: 'waitlistApp'
-  })
+  store: MongoStore.create({ mongoUrl: dbUrl })
 }));
 // const store = MongoStore.create({
 //     mongoUrl: dbUrl,
