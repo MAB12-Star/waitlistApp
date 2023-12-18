@@ -37,14 +37,22 @@ app.use(methodOverride('_method'));
 app.use(express.static('Public')); 
 
 const secret = process.env.SECRET;
-  const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 60 * 60,
-    crypto: {
-        secret: secret
-    }
-    
+
+const store = new MongoStore({
+  mongooseConnection: mongoose.connection, // Use existing mongoose connection
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret: secret,
+  },
 });
+//   const store = MongoStore.create({
+//     mongoUrl: dbUrl,
+//     touchAfter: 24 * 60 * 60,
+//     crypto: {
+//         secret: secret
+//     }
+    
+// });
 
 store.on('error', function(e){
   console.log('Session Store Error',e)
