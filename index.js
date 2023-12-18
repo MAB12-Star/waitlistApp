@@ -13,7 +13,7 @@ const MongoStore = require('connect-mongo');
 const ExpressError = require('./utils/ExpressError.js');
 const registerRoutes = require('./routes/register');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const dbUrl= process.env.SECRET;
+const dbUrl= process.env.DB_URL;
 //fuckyou
 
 // 'mongodb://127.0.0.1:27017/waitlisttest'
