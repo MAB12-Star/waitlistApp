@@ -13,7 +13,7 @@ const MongoStore = require('connect-mongo');
 const ExpressError = require('./utils/ExpressError.js');
 const registerRoutes = require('./routes/register');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const dbUrl=mongodb+srv://mblue:pZS78bVNktFPtnAk@waitlistapp.oalqx74.mongodb.net/?retryWrites=true&w=majority;
+const dbUrl='mongodb+srv://mblue:pZS78bVNktFPtnAk@waitlistapp.oalqx74.mongodb.net/?retryWrites=true&w=majority';
 
 
 // 'mongodb://127.0.0.1:27017/waitlisttest'
