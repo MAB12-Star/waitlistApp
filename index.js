@@ -25,6 +25,7 @@ mongoose.connect(dbUrl)
     console.log("Oh no mongo error!!!")
     console.log(err)
   });
+const secret = process.env.SECRET;
 const store = MongoStore.create({
   mongooseConnection: mongoose.connection, // Use mongoose connection
   touchAfter: 24 * 60 * 60,
@@ -32,7 +33,6 @@ const store = MongoStore.create({
     secret: secret
   }
 });
-const secret = process.env.SECRET;
 const client = new MongoClient(dbUrl, {
   serverApi: {
     version: ServerApiVersion.v1,
