@@ -26,6 +26,13 @@ mongoose.connect(dbUrl)
   });
 
 const secret = process.env.SECRET;
+const client = new MongoClient(dbUrl, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 const store = MongoStore.create({
   client: client,
   dbName: 'waitlistApp',
@@ -34,13 +41,7 @@ const store = MongoStore.create({
     secret: secret
   }
 });
-const client = new MongoClient(dbUrl, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+
 
 async function run() {
   try {
