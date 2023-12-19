@@ -100,6 +100,19 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode).render('error', { err });
 });
 
+async function run() {
+  try {
+    await client.connect();
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+    console.log("Retrying connection in 5 seconds...");
+    setTimeout(run, 5000); // Retry after 5 seconds
+  }
+}
+
+run().catch(console.dir);
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
