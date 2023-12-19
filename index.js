@@ -60,13 +60,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('Public'));
 
-// MongoStore.create({
-//     client,
-//     dbName: 'waitlistApp'
-//   })
+
 
 app.use(session({
-  store:store ,
+  store:MongoStore.create({
+    client,
+    dbName: 'waitlistApp'
+  }) ,
   name: 'session',
   secret,
   resave: false,
